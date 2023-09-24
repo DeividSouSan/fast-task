@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #252525;
+    color: whitesmoke;
+}
+
+header {
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerTarefas {
+    border: 1px solid black;
+    width: 40%;
+}
+.taskCard {
+    color: black;
+    border: 1px solid black;
+    background-color: beige;
+
+    border-radius: 0.25rem;
+    width: 100%;
+}
+
+.taskCard:hover {
+    filter: brightness(0.8);
+    cursor: pointer;
+}
