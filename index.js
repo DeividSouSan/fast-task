@@ -4,7 +4,7 @@ const submitBtn = document.querySelector('button')
 
 let tasksArray = [];
 
-function renderCards(array) {
+function renderCards() {
     tasksArray.map((item, index) => {
         const taskCard = document.createElement('div')
         taskCard.classList.add('taskCard')
@@ -20,10 +20,10 @@ function renderCards(array) {
 
 function removeTask(id) {
     tasksContainer.innerHTML = ''
+    
     tasksArray.splice(id, 1)
-
     localStorage.setItem('tasks', JSON.stringify(tasksArray))
-
+    
     renderCards()
 }
 
@@ -40,25 +40,29 @@ function addTask() {
     }
     tasksArray.push(newTask);
     localStorage.setItem('tasks', JSON.stringify(tasksArray))
+    renderCards()
 }
 
+const tasksExists = localStorage.getItem('tasks') ? true : false;
+const clearContainer = () => tasksContainer.innerHTML = '';
+
 submitBtn.addEventListener('click', () => {
-    tasksContainer.innerHTML = ''
-    if (localStorage.getItem('tasks')) {
+    clearContainer();
+    
+    if (tasksExists) {
         tasksArray = JSON.parse(localStorage.getItem('tasks'));
     } 
 
     addTask()
-    
-
-    renderCards(tasksArray)
+    taskInput.value = ''
 })
 
 window.addEventListener('load', () => {
-    if (localStorage.getItem('tasks')) {
+    // Checa se já existe chave "tasks" e recupera os dados
+    if (tasksExists) {
         tasksArray = JSON.parse(localStorage.getItem('tasks'))
-
-        renderCards(tasksArray)
     }
+
+    renderCards()
 })
 
