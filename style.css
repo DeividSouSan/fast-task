@@ -14,24 +14,35 @@
     body {
         font-size: calc(var(--f-size) + 0rem);
     }
+
+    header {
+        letter-spacing: normal;
+    }
 }
 
 @media screen and (min-width: 426px) {
     body {
         font-size: calc(var(--f-size) + 0.5rem);
     }
+
 }
 
 body {
-    background-color: #252525;
-    color: whitesmoke;
+    background-color: #ACBCE6;
+    color: rgb(0, 0, 0);
 }
 
 header {
     text-align: center;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.234);
+    text-decoration: underline;
+    letter-spacing: 1rem;
+    background-color: white;
+
+    margin-top: 1rem;
 
     >h1 {
-        font-weight: 200;
+        font-weight: 500;
     }
 }
 
@@ -50,12 +61,17 @@ main {
         align-items: center;
         gap: 1rem;
 
+        padding: 0.25rem;
+        width: 80%;
+
+        > label {
+            font-size: calc(var(--f-size) + 1rem);
+        }
+
         >input {
             width: 70%;
         }
     }
-
-
 }
 
 form {
@@ -64,8 +80,16 @@ form {
     align-items: center;
     gap: 1rem;
 
+    margin-top: 1rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+
+    padding: 1rem;
+
+    background-color: whitesmoke;
+
     >input {
-        border: none;
+        border: 1px solid black;
         border-radius: 50rem;
         height: calc(var(--f-size) + 0.5rem);
         font-size: calc(var(--f-size) + 0.25rem);
@@ -74,11 +98,13 @@ form {
 
     >button {
         border: none;
-        border-radius: 50rem;
-        height: calc(var(--f-size) + 0.5rem);
+        border-radius: 0.5rem;
+
+        height: calc(var(--f-size) + 1rem);
         font-size: calc(var(--f-size) + 0.1rem);
 
         padding: 0 1rem;
+        background-color: #6588E0;
     }
 
     >button:hover {
@@ -103,9 +129,10 @@ form {
     margin: 1rem;
     padding: 1rem;
 
-    border: 1px solid white;
+    background-color: whitesmoke;
+    border: 1px solid rgb(0, 0, 0);
     border-radius: 1rem;
-    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.31);
+    box-shadow: 0 1rem 10px 2px rgba(0, 0, 0, 0.31);
 
     >h2 {
         font-weight: 200;
@@ -114,13 +141,15 @@ form {
 
 .taskCard {
     color: black;
-    background-color: beige;
-    border: none;
+    background-color: #6588E0;
+    font-weight: 300;
 
-    border-radius: 0.25rem;
     width: 100%;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 10px 1px #25252570;
 
-    margin: 0.5rem 0;
+    margin: 1rem 0;
     padding-left: 1rem;
 }
 
