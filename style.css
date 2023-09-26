@@ -12,13 +12,13 @@
 
 @media screen and (max-width: 425px) {
     body {
-    font-size: calc(var(--f-size) + 0rem);
+        font-size: calc(var(--f-size) + 0rem);
     }
 }
 
 @media screen and (min-width: 426px) {
     body {
-    font-size: calc(var(--f-size) + 0.5rem);
+        font-size: calc(var(--f-size) + 0.5rem);
     }
 }
 
@@ -55,14 +55,15 @@ main {
         }
     }
 
-    
+
 }
+
 form {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    
+
     >input {
         border: none;
         border-radius: 50rem;
@@ -70,7 +71,8 @@ form {
         font-size: calc(var(--f-size) + 0.25rem);
         padding-left: 1rem;
     }
-    > button {
+
+    >button {
         border: none;
         border-radius: 50rem;
         height: calc(var(--f-size) + 0.5rem);
@@ -79,7 +81,7 @@ form {
         padding: 0 1rem;
     }
 
-    > button:hover {
+    >button:hover {
         filter: brightness(0.8);
         cursor: pointer;
     }
@@ -91,7 +93,7 @@ form {
     }
 }
 
-@media screen and (min-width: 426px)  {
+@media screen and (min-width: 426px) {
     .tarefasAtuais {
         width: 50%;
     }
@@ -99,7 +101,7 @@ form {
 
 .tarefasAtuais {
     margin: 1rem;
-    padding: 1rem;  
+    padding: 1rem;
 
     border: 1px solid white;
     border-radius: 1rem;
