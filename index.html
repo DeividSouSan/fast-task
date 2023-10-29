@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Tarefas</title>
+    <title>Fast Task</title>
     <link rel="stylesheet" href="style.css">
     <!-- Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,23 +16,30 @@
 
 <body>
     <header>
-        <h1>Lista de Tarefas</h1>
+        <h1 class="page-title">Fast Task</h1>
+        <hr class="title-bottom-border">
+        <button>Add Task</button>
     </header>
 
     <main>
-        <form>
-            <label for="task">Tarefa</label>
-            <input type="text" name="" id="task">
-            <button type="button">Adicionar</button>
-        </form>
+        
 
         <section class="tarefasAtuais">
-            <h2>Tarefas Atuais: </h2>
+            <h2 class="section-title">Tarefas Atuais</h2>
             <div class="containerTarefas">
                 <!-- As tarefas aparecem aqui -->
             </div>
         </section>
     </main>
+
+    <template>
+        <form>
+            <label for="task">Tarefa</label>
+            <input type="text" name="" id="task">
+            <button type="button">Adicionar</button>
+        </form>
+    </template>
+    
     <script src="index.js" defer></script>
 </body>
 
