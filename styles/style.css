@@ -22,24 +22,22 @@
 }
 
 body {
-    background-color: var(--medium-gray);
+    background-color: var(--light-gray);
 }
 
 header {
-    
-    
-    > .page-title {
+    >.page-title {
         text-align: center;
         background-image: linear-gradient(to right, var(--strong-gray), var(--medium-gray));
         color: var(--weak-black);
         font-weight: 500;
     }
 
-    > .title-bottom-border {
+    >.title-bottom-border {
         border: none;
         outline: none;
         height: 1px;
-        background-image: linear-gradient(to right, var(--medium-gray),var(--strong-gray));
+        background-image: linear-gradient(to right, var(--medium-gray), var(--strong-gray));
     }
 }
 
@@ -61,7 +59,7 @@ main {
         padding: 0.25rem;
         width: 80%;
 
-        > label {
+        >label {
             font-size: calc(var(--f-size) + 1rem);
         }
 
@@ -70,46 +68,6 @@ main {
         }
     }
 }
-
-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-
-    margin-top: 1rem;
-    border: 1px solid black;
-    border-radius: 0.5rem;
-
-    padding: 1rem;
-
-    background-color: whitesmoke;
-
-    >input {
-        border: 1px solid black;
-        border-radius: 50rem;
-        height: calc(var(--f-size) + 0.5rem);
-        font-size: calc(var(--f-size) + 0.25rem);
-        padding-left: 1rem;
-    }
-
-    >button {
-        border: none;
-        border-radius: 0.5rem;
-
-        height: calc(var(--f-size) + 1rem);
-        font-size: calc(var(--f-size) + 0.1rem);
-
-        padding: 0 1rem;
-        background-color: #6588E0;
-    }
-
-    >button:hover {
-        filter: brightness(0.8);
-        cursor: pointer;
-    }
-}
-
 
 @media screen and (min-width: 426px) {
     .tarefasAtuais {
@@ -124,20 +82,20 @@ form {
     padding: 0 1rem;
 
     background-color: var(--medium-gray);
-    background-image: linear-gradient(to bottom, var(--light-gray), var(--medium-gray));
+    background-image: linear-gradient(to bottom, var(--medium-gray), var(--medium-gray));
     border-radius: 2px;
 
-    > .section-title {
+    >.section-title {
         text-align: center;
         font-size: 1.5rem;
-        font-weight: 300;
+        font-weight: 500;
     }
 }
 
 .taskCard {
     color: black;
     background-color: white;
-    
+
     font-weight: 300;
 
     width: 100%;
@@ -148,4 +106,26 @@ form {
 
 .taskCard::before {
     content: "> ";
+}
+
+.modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #0c0c0d97;
+
+    width: 100%;
+    height: 100%;
+}
+
+.modal-container>form {
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+
+    border-radius: 1rem 1rem 1rem 0;
+    box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.464);
+    background-color: var(--light-gray);
 }
