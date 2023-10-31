@@ -2,23 +2,27 @@ import { modal } from "../components/Modal.js";
 import { TasksStructure } from "../classes/TasksStructure.js";
 import { Task } from "../classes/Task.js";
 import { LocalStorageController } from "../classes/LocalStorageController.js";
+import { renderTasks } from "../services/RenderTasks.js";
 
+
+// HTML Elements
+const taskWrapper = document.querySelector('.task-wrapper')
+const addTaskButton = document.querySelector('.modal-btn')
+const submitButton = modal.querySelector('button')
+
+
+// Objects
 const Tasks = new TasksStructure()
 const StorageController = new LocalStorageController('tasks')
 
-const previousData = StorageController.getValues()
+// Ações
+Tasks.addPreviousTasks(StorageController.getValues())
 
-if (previousData) {
-    Tasks.addPreviousTasks(previousData)
-    console.log('tarefas foram atualizadas')
-} else {
-    console.log('não há tarefas antigas')
-}
+renderTasks(taskWrapper, Tasks.getTasks)
 
-const addTaskButton = document.querySelector('.modal-btn')
+// Eventos
 addTaskButton.onclick = () => document.body.appendChild(modal)
 
-const submitButton = modal.querySelector('button')
 submitButton.addEventListener('click', () => {
     document.body.removeChild(modal)
 
@@ -28,4 +32,7 @@ submitButton.addEventListener('click', () => {
     Tasks.addTask(task)
 
     StorageController.setValues(Tasks.getTasks)
+
+    console.log('Up to dato:', Tasks.upToDate(StorageController.getValues(), Tasks.getTasks))
 })
+
