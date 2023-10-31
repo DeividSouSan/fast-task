@@ -14,30 +14,34 @@
     font-family: 'Poppins', sans-serif;
 }
 
-@media screen and (min-width: 426px) {
-    body {
-        font-size: calc(var(--f-size) + 0.5rem);
-    }
-
-}
-
 body {
     background-color: var(--light-gray);
 }
 
 header {
     >.page-title {
-        text-align: center;
+        display: flex;
+        justify-content: center;
         background-image: linear-gradient(to right, var(--strong-gray), var(--medium-gray));
-        color: var(--weak-black);
-        font-weight: 500;
+        border: none;
+        outline: none;
+        
+        > h1 {
+            color: black;   
+            font-weight: 500;
+        }
     }
 
     >.title-bottom-border {
         border: none;
         outline: none;
-        height: 1px;
+        height: 2px;
         background-image: linear-gradient(to right, var(--medium-gray), var(--strong-gray));
+    }
+
+    .modal-btn {
+        width: 100%;
+        text-transform: uppercase;
     }
 }
 
@@ -70,43 +74,46 @@ main {
 }
 
 @media screen and (min-width: 426px) {
-    .tarefasAtuais {
+    .active-tasks {
         width: 50%;
     }
 }
 
-.tarefasAtuais {
+.active-tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     width: 90%;
-
     margin: 1rem;
-    padding: 0 1rem;
-
-    background-color: var(--medium-gray);
-    background-image: linear-gradient(to bottom, var(--medium-gray), var(--medium-gray));
-    border-radius: 2px;
 
     >.section-title {
         text-align: center;
         font-size: 1.5rem;
         font-weight: 500;
+        background-color: var(--medium-gray);
+        border-radius: 2px;
+        width: 100%;
+
     }
+
+    .task-wrapper {
+        width: 90%;
+
+        .task-card {
+            display: flex;
+            color: black;
+            background-color: white;
+            font-weight: 300;
+            margin: 5px 0;
+            padding-left: 10px;
+            border-radius: 2px;
+        }
+    }
+
 }
 
-.taskCard {
-    color: black;
-    background-color: white;
 
-    font-weight: 300;
-
-    width: 100%;
-
-    margin: 5px 0;
-    padding-left: 1rem;
-}
-
-.taskCard::before {
-    content: "> ";
-}
 
 .modal-container {
     position: absolute;
@@ -119,7 +126,7 @@ main {
 }
 
 .modal-container>form {
-    
+
     position: absolute;
     top: 50%;
     left: 50%;
