@@ -7,14 +7,23 @@ export class TasksStructure {
      * @param {Task} task An instance of Task class
      */
     addTask(task) {
-        this.tasks.push(task) 
+        this.tasks.push(task)
         return task
     }
 
     addPreviousTasks(array) {
-        array.forEach(element => {
-            this.tasks.push(element)
-        });
+        if (array) {
+            array.forEach(element => {
+                this.tasks.push(element)
+            });
+            console.log('Os dados anteriores estão em Task.tasks')
+        } else {
+            return 'Não há dados passados no Local Storage';
+        }
+    }
+
+    upToDate(LocalStorageArray, TasksArray) {
+        return (LocalStorageArray === TasksArray);
     }
 
     get getTasks() {
