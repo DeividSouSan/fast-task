@@ -1,5 +1,10 @@
 export class TasksStructure {
     constructor() {
+        if (instance) {
+            throw new Error('Nova instância não pode ser criada')
+        }
+
+        instace = this
         this.tasks = []
     }
 
