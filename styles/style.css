@@ -136,3 +136,18 @@ main {
     box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.464);
     background-color: var(--light-gray);
 }
+
+footer {
+
+    > .info-button {
+        position: absolute;
+        top: 92.5%;
+        left: 85%;
+
+        width: 32px;
+        height: 32px;
+
+        border-radius: 50rem;
+        border: 2px solid black;
+    }
+}
