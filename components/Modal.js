@@ -1,27 +1,57 @@
-export let modal = document.createElement('div')
+import { TasksStructure } from "../classes/TasksStructure.js"
+import { Task } from "../classes/Task.js"
+import { LocalStorageController } from "../classes/LocalStorageController.js"
+
+export const modal = document.createElement('div')
 modal.classList.add('modal-container')
 
-let form = document.createElement('form') 
+// Objects
+const Tasks = new TasksStructure()
+const StorageController = new LocalStorageController('tasks')
 
-let label = document.createElement('label')
-label.textContent = 'Tarefa'
+// Functions
+const hideModal = () => document.body.removeChild(modal)
 
-let input = document.createElement('input')
-input.type = 'text'
-input.classList.add('task-text')
+const appendChildElements = (parent, ...children) => {
+    children.forEach(child => parent.appendChild(child));
+}
 
-let submit_button = document.createElement('button')
-submit_button.type = 'button'
-submit_button.textContent = 'Adicionar'
+const createForm = () => {
+    const form = document.createElement('form')
+    const label = document.createElement('label')
+    const input = document.createElement('input')
+    const submit_button = document.createElement('button')
 
-form.appendChild(label)
-form.appendChild(input)
-form.appendChild(submit_button)
+    label.textContent = 'Tarefa'
 
-modal.appendChild(form)
+    input.type = 'text'
+    input.classList.add('task-text')
+
+    submit_button.type = 'button'
+    submit_button.textContent = 'Adicionar'
+
+    appendChildElements(form, label, input, submit_button);
+
+    return form
+}
+
+// Elements
+const form = createForm()
+appendChildElements(modal, form);
+
+// Events
+form.querySelector('button').addEventListener('click', () => {
+    const currentTaskText = modal.querySelector('input').value
+    const currentTask = new Task(currentTaskText)
+
+    Tasks.addTask(currentTask)
+
+    StorageController.setValues(Tasks.getTasks)
+    hideModal()
+})
 
 modal.onclick = (ev) => {
-    if (ev.target.className === 'modal-container') {
-        document.body.removeChild(modal)
+    if (ev.target.classList.contains('modal-container')) {
+        hideModal()
     }
 }

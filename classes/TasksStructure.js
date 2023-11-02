@@ -1,6 +1,15 @@
+let instance;
+
 export class TasksStructure {
     constructor() {
-        this.tasks = []
+        if (instance) {
+            this.tasks = instance.tasks
+            console.log('Uma instância já existe, dados recuperados.')
+        } else {
+            this.tasks = []
+            console.log("Não existe uma instância, uma nova instância foi criada.")
+        }
+        instance = this
     }
 
     /**
@@ -23,8 +32,13 @@ export class TasksStructure {
     }
 
     upToDate(LocalStorageArray, TasksArray) {
-        return (LocalStorageArray === TasksArray);
+        return (LocalStorageArray == TasksArray);
     }
+
+    deleteTask(index) {
+        return this.tasks.splice(index, 1)
+    }
+
 
     get getTasks() {
         return this.tasks
