@@ -1,10 +1,19 @@
+let instance;
 export class LocalStorageController {
     /** 
      * @param {key} string The key you want the data
      **/
 
     constructor(key) {
-        this.key = key
+        if (instance) {
+            this.key = instance.key;
+            this.listeners = instance.listeners;
+        } else {
+            this.key = key;
+            this.listeners = [];
+        }
+
+        instance = this;
     }
 
     /** 
@@ -17,9 +26,9 @@ export class LocalStorageController {
 
         } else {
             localStorage.setItem(this.key, JSON.stringify(items))
+            this.notifyListeners()
             return items
         }
-
     }
 
     getValues() {
@@ -31,5 +40,13 @@ export class LocalStorageController {
             console.log("Não há nada no Local Storage.")
         }
         return data ? data : null
+    }
+
+    addListener(listener) {
+        this.listeners.push(listener)
+    }
+
+    notifyListeners() {
+        this.listeners.forEach(listener => listener())
     }
 }
