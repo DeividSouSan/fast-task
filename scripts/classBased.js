@@ -7,16 +7,19 @@ import { Task } from "../classes/Task.js";
 function renderTasks(wrapper, tasks) {
     let arrowIconPath = "src/images/task/tiny_plus.svg"
 
-    tasks.forEach((text, index) => {
+    wrapper.innerHTML = ''
+
+    tasks.forEach((task, index) => {
         const taskCard = document.createElement('section')
         taskCard.classList.add('task-card')
         taskCard.onclick = () => {
             Tasks.deleteTask(index)
             StorageController.setValues(Tasks.getTasks)
         }
+        console.log(task)
         taskCard.innerHTML = `
                 <img src=${arrowIconPath}>    
-                <p>${text}</p>
+                <p>${task.text}</p>
             `
         wrapper.appendChild(taskCard)
     });
@@ -27,14 +30,19 @@ const addTaskButton = document.querySelector('.modal-btn')
 const infoButton = document.querySelector('.info-button')
 
 // Objects
-const Tasks = new TasksStructure()  
+const Tasks = new TasksStructure()
 const StorageController = new LocalStorageController('tasks')
 
 // Actions
 Tasks.addPreviousTasks(StorageController.getValues()) // Catch Tasks stored in LocalStorage
-renderTasks(taskWrapper, StorageController.getValues()) // Render Tasks stored in LocalStorage
+renderTasks(taskWrapper, Tasks.getTasks)
+
+StorageController.addListener(() => { 
+    renderTasks(taskWrapper, Tasks.getTasks)
+ }) // Add listener to LocalStorage
+
 
 // Events
 const showModal = (modal) => { document.body.appendChild(modal) }
-addTaskButton.onclick = () => showModal(modal) 
+addTaskButton.onclick = () => showModal(modal)
 infoButton.onclick = () => showModal(modal)
