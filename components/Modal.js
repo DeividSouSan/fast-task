@@ -43,10 +43,8 @@ appendChildElements(modal, form);
 form.querySelector('button').addEventListener('click', () => {
     const currentTaskText = modal.querySelector('input').value
     const currentTask = new Task(currentTaskText)
-    console.log(currentTask)
 
     Tasks.addTask(currentTask)
-    console.log(Tasks.getTasks)
 
     StorageController.setValues(Tasks.getTasks)
     hideModal()
