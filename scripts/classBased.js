@@ -1,4 +1,5 @@
 import { modal } from "../components/Modal.js";
+import { infoModal } from "../components/InfoModal.js"
 import { TasksStructure } from "../classes/TasksStructure.js";
 import { LocalStorageController } from "../classes/LocalStorageController.js";
 import { Task } from "../classes/Task.js";
@@ -37,12 +38,12 @@ const StorageController = new LocalStorageController('tasks')
 Tasks.addPreviousTasks(StorageController.getValues()) // Catch Tasks stored in LocalStorage
 renderTasks(taskWrapper, Tasks.getTasks)
 
-StorageController.addListener(() => { 
+StorageController.addListener(() => {
     renderTasks(taskWrapper, Tasks.getTasks)
- }) // Add listener to LocalStorage
+}) // Add listener to LocalStorage
 
 
 // Events
 const showModal = (modal) => { document.body.appendChild(modal) }
 addTaskButton.onclick = () => showModal(modal)
-infoButton.onclick = () => showModal(modal)
+infoButton.onclick = () => showModal(infoModal)
