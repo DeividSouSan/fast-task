@@ -5,8 +5,4 @@ export class Task {
     constructor(text) {
         this.text = text
     }
-
-    showText() {
-        return this.text
-    }
 }
