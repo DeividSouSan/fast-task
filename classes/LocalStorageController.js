@@ -23,7 +23,6 @@ export class LocalStorageController {
         if (items === undefined) {
             console.log("Não há nada para inserir no local storage")
             return null
-
         } else {
             localStorage.setItem(this.key, JSON.stringify(items))
             this.notifyListeners()

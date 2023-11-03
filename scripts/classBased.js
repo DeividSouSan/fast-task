@@ -1,33 +1,39 @@
-import { modal } from "../components/Modal.js";
+import { addTaskModal } from "../components/AddTaskModal.js";
 import { infoModal } from "../components/InfoModal.js"
 import { TasksStructure } from "../classes/TasksStructure.js";
 import { LocalStorageController } from "../classes/LocalStorageController.js";
-import { Task } from "../classes/Task.js";
 
 // Functions
 function renderTasks(wrapper, tasks) {
     let arrowIconPath = "src/images/task/tiny_plus.svg"
 
     wrapper.innerHTML = ''
+    console.log(tasks)
+    if (tasks.length > 0) {
+        tasks.forEach((task, index) => {
+            const taskCard = document.createElement('section')
+            taskCard.classList.add('task-card')
+            taskCard.onclick = () => {
+                Tasks.deleteTask(index)
+                StorageController.setValues(Tasks.getTasks)
+            }
 
-    tasks.forEach((task, index) => {
-        const taskCard = document.createElement('section')
-        taskCard.classList.add('task-card')
-        taskCard.onclick = () => {
-            Tasks.deleteTask(index)
-            StorageController.setValues(Tasks.getTasks)
-        }
-        console.log(task)
-        taskCard.innerHTML = `
+            taskCard.innerHTML = `
                 <img src=${arrowIconPath}>    
                 <p>${task.text}</p>
             `
-        wrapper.appendChild(taskCard)
-    });
+            wrapper.appendChild(taskCard)
+        });
+    } else {
+        const emptyTask = document.createElement('span')
+        emptyTask.textContent = 'No tasks yet'
+        wrapper.appendChild(emptyTask)
+    }
+
 }
 // HTML Elements
-const taskWrapper = document.querySelector('.task-wrapper')
-const addTaskButton = document.querySelector('.modal-btn')
+const taskWrapper = document.querySelector('.tasks-wrapper')
+const addTaskButton = document.querySelector('.add-task-button')
 const infoButton = document.querySelector('.info-button')
 
 // Objects
@@ -45,5 +51,10 @@ StorageController.addListener(() => {
 
 // Events
 const showModal = (modal) => { document.body.appendChild(modal) }
-addTaskButton.onclick = () => showModal(modal)
+addTaskButton.onclick = () => {
+    showModal(addTaskModal);
+    addTaskModal.querySelector('input').value = ''
+    addTaskModal.querySelector('input').focus()
+}
+
 infoButton.onclick = () => showModal(infoModal)
