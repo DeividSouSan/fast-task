@@ -19,10 +19,10 @@ title.innerText = 'Sobre o Local Storage'
 
 const closeButton = document.createElement('button')
 closeButton.classList.add('close-button')
-closeButton.innerText = 'X'
 closeButton.onclick = () => document.body.removeChild(infoModal)
 
 const headerSection = document.createElement('section')
+headerSection.classList.add('info-modal-top')
 appendChildElement(headerSection, title, closeButton)
 
 const fParagraph = document.createElement('p')
