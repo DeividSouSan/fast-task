@@ -1,5 +1,5 @@
-# task-manager
-Esse projeto foi feito no intuito de utilizar o Local Storage do navegador para guardar informações.
+# Fast Task
+Um simples e prático gerenciador de tarefas (to-do app) que utiliza do Local Storage do navegador.
 
-Link da Página:
-https://deividsousan.github.io/task-manager/
+Acesse:
+https://deividsousan.github.io/fast-task/
