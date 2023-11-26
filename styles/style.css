@@ -15,7 +15,7 @@
 }
 
 body {
-    background-image: url('../src/images/blurry_background.svg');
+    background-image: url('../images/blurry_background.svg');
     background-size: cover;
     height: 100vh;
 }
@@ -45,7 +45,7 @@ header {
             display: inline-block;
             width: 32px;
             height: 32px;
-            background-image: url('../src/images/logo/double_checkmark.svg');
+            background-image: url('../images/double_checkmark.svg');
             background-size: cover;
         }
     }
@@ -68,7 +68,7 @@ header {
 
         width: 90%;
         margin: 1rem 0;
-        border-radius: 00px 10px 10px 0;
+        border-radius: 0 10px 10px 0;
 
         font-size: 1.5rem;
         font-weight: 500;
@@ -82,7 +82,7 @@ header {
         display: inline-block;
         width: 22px;
         height: 22px;
-        background-image: url('../src/images/seta_baixo.svg');
+        background-image: url('../images/arrow_down.svg');
         background-size: cover;
 
     }
@@ -103,6 +103,39 @@ header {
             padding-left: 10px;
             border-radius: 2px;
             width: 90%;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    header {
+        .page-title {
+            >h1 {
+                font-size: 2rem;
+            }
+
+            >h1::after {
+                width: 42px;
+                height: 42px;
+            }
+        }
+    }
+
+    .active-tasks {
+        width: 50%;
+        margin: auto;
+
+        >h2 {
+            border-radius: 10px;
+            margin: 1rem auto;
+        }
+
+        & .task-card {
+            font-size: 1.25rem;      
+        }
+
+        & .task-card:hover {
+            cursor: pointer;
         }
     }
 }
@@ -131,12 +164,40 @@ header {
         background-color: rgb(255, 255, 255);
 
         >label {
-            font-size: 1.5rem;
+            font-size: 2.25rem;
+            font-weight: 500;
         }
 
         >input {
             padding-left: 5px;
             width: 100%;
+            border: 1.5px solid black;
+            font-size: 1.25rem;
+        }
+
+        >div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 10px;
+
+            >button {
+                flex: 1;
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+                border: none;
+
+                background-color: var(--strong-gray);
+                color: white;
+
+                font-size: 1.25rem;
+                font-weight: 500;
+                cursor: pointer;
+            }
+
+            >button:hover {
+                filter: brightness(0.6);
+            }
         }
     }
 }
@@ -168,10 +229,9 @@ header {
             justify-content: space-between;
 
             >.close-button {
-                background-image: url(../src/images/close_circle_x.svg);
+                background-image: url(../images/close_circle_x.svg);
                 background-size: cover;
 
-                /* border: 2px solid black; */
                 border: none;
                 border-radius: 100%;
                 outline: none;
@@ -192,9 +252,32 @@ header {
     }
 }
 
+@media screen and (min-width: 768px) {
+    .add-task-modal-container {
+        >form {
+            width: 50%;
+
+            >input {
+                font-size: large;
+            }
+
+            >div {
+                flex-direction: row;
+            }
+        }
+    }
+
+    .info-modal-container {
+        .info-modal {
+            width: 50%;
+        }
+    }
+}
+
+
 footer {
     .info-button {
-        background-image: url('../src/images/info/question_mark.svg');
+        background-image: url('../images/question_mark.svg');
         background-size: cover;
 
         position: fixed;
@@ -211,7 +294,7 @@ footer {
     }
 
     .add-task-button {
-        background-image: url('../src/images/plus.svg');
+        background-image: url('../images/plus.svg');
         background-size: cover;
 
         position: fixed;
@@ -225,6 +308,24 @@ footer {
         border: 2px solid black;
 
         box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.464);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    footer {
+        .info-button {
+            width: 42px;
+            height: 42px;
+        }
+
+        .add-task-button {
+            width: 42px;
+            height: 42px;
+        }
+
+        .info-button:hover, .add-task-button:hover {
+            cursor: pointer;
+        }
     }
 }
 

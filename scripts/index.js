@@ -1,68 +1,60 @@
-const tasksContainer = document.querySelector('.containerTarefas')
-const taskInput = document.querySelector('#task')
-const submitBtn = document.querySelector('button')
+import { addTaskModal } from "../components/AddTaskModal.js";
+import { infoModal } from "../components/InfoModal.js"
+import { TasksStructure } from "../classes/TasksStructure.js";
+import { LocalStorageController } from "../classes/LocalStorageController.js";
 
-let tasksArray = [];
+// Functions
+function renderTasks(wrapper, tasks) {
+    let arrowIconPath = "images/greater_than_arrow.svg"
 
-function renderCards() {
-    tasksArray.map((item, index) => {
-        const taskCard = document.createElement('div')
-        taskCard.classList.add('taskCard')
-        taskCard.innerText = item.text
+    wrapper.innerHTML = ''
+    console.log(tasks)
+    if (tasks.length > 0) {
+        tasks.forEach((task, index) => {
+            const taskCard = document.createElement('section')
+            taskCard.classList.add('task-card')
+            taskCard.onclick = () => {
+                Tasks.deleteTask(index)
+                StorageController.setValues(Tasks.getTasks)
+            }
 
-        taskCard.addEventListener('click', () => {
-            removeTask(index)
-        })
-
-        tasksContainer.appendChild(taskCard)
-    })
-}
-
-function removeTask(id) {
-    tasksContainer.innerHTML = ''
-    
-    tasksArray.splice(id, 1)
-    localStorage.setItem('tasks', JSON.stringify(tasksArray))
-    
-    renderCards()
-}
-
-function addTask() {
-    if (taskInput.value){
-        console.log('O input tem valor.')
-        var newTask = {
-            "id": tasksArray.length,
-            "text": taskInput.value
-        }
+            taskCard.innerHTML = `
+                <img src=${arrowIconPath}>    
+                <p>${task.text}</p>
+            `
+            wrapper.appendChild(taskCard)
+        });
     } else {
-        console.log('O input não tem valor.')
-        throw 'Não há valor no input.'
+        const emptyTask = document.createElement('span')
+        emptyTask.textContent = 'Sem tarefas ainda'
+        wrapper.appendChild(emptyTask)
     }
-    tasksArray.push(newTask);
-    localStorage.setItem('tasks', JSON.stringify(tasksArray))
-    renderCards()
+
+}
+// HTML Elements
+const taskWrapper = document.querySelector('.tasks-wrapper')
+const addTaskButton = document.querySelector('.add-task-button')
+const infoButton = document.querySelector('.info-button')
+
+// Objects
+const Tasks = new TasksStructure()
+const StorageController = new LocalStorageController('tasks')
+
+// Actions
+Tasks.addPreviousTasks(StorageController.getValues()) // Catch Tasks stored in LocalStorage
+renderTasks(taskWrapper, Tasks.getTasks)
+
+StorageController.addListener(() => {
+    renderTasks(taskWrapper, Tasks.getTasks)
+}) // Add listener to LocalStorage
+
+
+// Events
+const showModal = (modal) => { document.body.appendChild(modal) }
+addTaskButton.onclick = () => {
+    showModal(addTaskModal);
+    addTaskModal.querySelector('input').value = ''
+    addTaskModal.querySelector('input').focus()
 }
 
-const tasksExists = localStorage.getItem('tasks') ? true : false;
-const clearContainer = () => tasksContainer.innerHTML = '';
-
-submitBtn.addEventListener('click', () => {
-    clearContainer();
-    
-    if (tasksExists) {
-        tasksArray = JSON.parse(localStorage.getItem('tasks'));
-    } 
-
-    addTask()
-    taskInput.value = ''
-})
-
-window.addEventListener('load', () => {
-    // Checa se já existe chave "tasks" e recupera os dados
-    if (tasksExists) {
-        tasksArray = JSON.parse(localStorage.getItem('tasks'))
-    }
-
-    renderCards()
-})
-
+infoButton.onclick = () => showModal(infoModal)
